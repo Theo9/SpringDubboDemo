@@ -18,7 +18,9 @@ public class ExcelOperateImpl implements ExcelOperate {
     public String migrateQYCreditData(JSONObject object) {
         Response response = null;
         try{
-            response = okHttpClientComponet.postReturnResponse(urlContent.getMigrateQYCreditUrl(),JSONObject.toJSONString(object),null);
+            String url = urlContent.getMigrateQYCreditUrl();
+            String param = object.toString();
+            response = okHttpClientComponet.postReturnResponse(url,param,null);
             JSONObject jsonObject = JSONObject.parseObject(response.body().string(),JSONObject.class);
             return jsonObject.getString("code");
         }catch (Exception e){

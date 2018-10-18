@@ -1,4 +1,5 @@
-com/zsc/common/OkHttpClientComponet.class
-com/zsc/service/serviceImpl/ExcelOperateImpl.class
-com/zsc/service/ExcelOperate.class
-com/zsc/main/MigrateQYCredit.class
+com\zsc\init\UrlContent.class
+com\zsc\service\serviceImpl\ExcelOperateImpl.class
+com\zsc\main\MigrateQYCredit.class
+com\zsc\common\OkHttpClientComponet.class
+com\zsc\service\ExcelOperate.class
