@@ -9,14 +9,14 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
     </context:component-scan>
 
-    <!--<bean id="propertyConfigurer"
+    <bean id="propertyConfigurer"
     class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
-                <value></value>
+                <value>classpath:configs/url.properties</value>
             </list>
         </property>
     </bean>
-    <import resource="Spring-context.xml"></import>-->
+    <!--<import resource="Spring-context.xml"></import>-->
 </beans>
