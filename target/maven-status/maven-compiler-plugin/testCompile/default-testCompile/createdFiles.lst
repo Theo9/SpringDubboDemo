@@ -1,2 +1,4 @@
 com\zsc\test\ExcelTest.class
+com\zsc\test\Jdk8Test.class
 com\zsc\test\BaseTest.class
+com\zsc\test\LamdbaTest.class

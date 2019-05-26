@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,10 +27,10 @@ public class ExcelTest extends BaseTest{
     private ExcelOperate excelOperate;
     @Test
     public void migrateQYCredit() throws IOException, InvalidFormatException {
-        File file = new File("E:\\file\\credit.xls");
+        File file = new File("E:\\file\\09.xlsx");
         if(file.exists()){
             Workbook workbook = WorkbookFactory.create(file);
-            Sheet sheet = workbook.getSheet("data");
+            Sheet sheet = workbook.getSheet("Sheet1");
 
             HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
             Sheet result = hssfWorkbook.createSheet("result");
@@ -45,13 +46,20 @@ public class ExcelTest extends BaseTest{
                 if(null == row){
                     return;
                 }
-                param.put("companyName",row.getCell(0).toString());
-                param.put("cdTotalAmount",row.getCell(1).toString());
-                param.put("fcdTotalAmount",row.getCell(2).toString());
+                if(null!=row.getCell(1)){
+                    param.put("name",row.getCell(1).toString());
+                    System.out.println(row.getCell(1).toString());
+                }
+                if(null!=row.getCell(2)){
+                    param.put("identity",row.getCell(2).toString());
+                    System.out.println(row.getCell(2).toString());
+                }
+                param.put("cdTotalAmount",row.getCell(3).toString());
+                param.put("fcdTotalAmount",row.getCell(4).toString());
                 String code = excelOperate.migrateQYCreditData(param);
                 resRow = result.createRow(errorCount);
-                resRow.createCell(0).setCellValue(row.getCell(0).toString());
-                resRow.createCell(2).setCellValue(code);
+                resRow.createCell(0).setCellValue(row.getCell(2).toString());
+                resRow.createCell(1).setCellValue(code);
                 errorCount++;
             }
 

@@ -51,6 +51,28 @@ public class OkHttpClientComponet {
         return okHttpClient.newCall(request).execute();
     }
 
+    public Response postReturnResponse2(String url, String params, Map<String,String> headers) throws IOException {
+        Headers requestHeaders = null;
+
+        if(null != headers){
+            requestHeaders = Headers.of(headers);
+        }
+
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+
+        RequestBody body = RequestBody.create(mediaType,params);
+
+        Request request;
+        Request.Builder builder = new Request.Builder().url(url).post(body).addHeader("content-type","application/x-www-form-urlencoded");
+        if(requestHeaders != null){
+            builder.headers(requestHeaders);
+        }
+
+        request = builder.build();
+
+        return okHttpClient.newCall(request).execute();
+    }
+
 
 
     public Response getReturnRepsponse(String url,Map<String,String> headers) throws IOException {
